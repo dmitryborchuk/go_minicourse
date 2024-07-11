@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option go_package = "grpc/proto";
+
+package proto;
+
+service Bank {
+  rpc CreateAccount(CreateAccountRequest) returns(google.protobuf.Empty) {}
+  rpc DeleteAccount(DeleteAccountRequest) returns(google.protobuf.Empty) {}
+  rpc ChangeAccountsName(ChangeAccountsNameRequest) returns(google.protobuf.Empty) {}
+  rpc ChangeAccountsBalance(ChangeAccountsBalanceRequest) returns(google.protobuf.Empty) {}
+  rpc GetAccount(GetAccountRequest) returns(GetAccountResponse) {}
+}
+
+message GetAccountResponse  {
+  string Name = 1;
+  int32 Amount = 2;
+}
+
+message CreateAccountRequest {
+  string Name = 1;
+  int32 Amount = 2;
+}
+
+message GetAccountRequest {
+  string Name = 1;
+}
+
+message ChangeAccountsBalanceRequest {
+  string Name = 1;
+  int32 Amount = 2;
+}
+
+message ChangeAccountsNameRequest {
+  string Name = 1;
+  string NewName = 2;
+}
+
+message DeleteAccountRequest {
+  string Name = 1;
+}
